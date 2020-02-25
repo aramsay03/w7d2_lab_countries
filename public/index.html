@@ -2,7 +2,7 @@
 <html lang="en" dir="ltr">
   <head>
     <meta charset="utf-8">
-    <title></title>
+    <title>Country Information</title>
     <link rel="stylesheet" href="./css/style.css">
     <script src="./js/bundle.js" type="text/javascript">
 
@@ -16,8 +16,9 @@
 
       <h2>Total population of all countries globaly: {{totalPopulation}}</h2>
 
+      <label for="country_search">Select a Country</label>
+      <input type="text" id="country-search" v-model="countrySearch">
       <label for="country_select">Select a Country</label>
-      <input type="text" id="search-country">
       <select id="country_select" v-model="selectedCountry">
         <option disabled value="">Select a Country</option>
         <option v-for="country in countries" :value="country">{{country.name}}</option>
@@ -40,18 +41,7 @@
         </div>
 
       </div>
-      <!-- <ul>
-        <li v-for="(country, index) in countries">
-          <div class="">
-          <p>{{country.name}}</p>
-            <input type="checkbox" id="view" @click="viewMore(index)">View more</input>
-            <div id="countryDetails" style="display:none">
-              <p>{{country.population}}</p>
-              <img :src="country.flag">
-            </div>
-          </div>
-        </li>
-      </ul> -->
+
     </div>
 
   </body>

@@ -1,4 +1,5 @@
 import Vue from 'vue';
+// Vue.component('v-select', VueSelect.VueSelect);
 
 document.addEventListener('DOMContentLoaded', () => {
   new Vue({
@@ -11,6 +12,7 @@ document.addEventListener('DOMContentLoaded', () => {
       selectedCountry: null,
       favouriteCountries: [],
       seen: false,
+      countrySearch: []
     },
     computed: {
       totalPopulation: function() {
@@ -18,6 +20,7 @@ document.addEventListener('DOMContentLoaded', () => {
           return runningTotal + country.population
         }, 0)
       },
+
     },
     methods: {
       fetchCountries: function(){
@@ -28,19 +31,6 @@ document.addEventListener('DOMContentLoaded', () => {
       addToFavourites: function(){
         this.favouriteCountries.push(this.selectedCountry)
       }
-      // setCountries: function(data){
-      //   this.countries = data
-      // },
-      // viewMore: function(){
-      //   var checkBox = document.getElementById("view");
-      //   var text = document.getElementById("countryDetails");
-      //
-      //     if (checkBox.checked == true) {
-      //       text.style.display = "block";
-      //     } else {
-      //       text.style.display = "none";
-      //     }
-      //   }
     }
   })
 })
