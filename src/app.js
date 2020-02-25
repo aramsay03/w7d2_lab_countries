@@ -8,11 +8,14 @@ document.addEventListener('DOMContentLoaded', () => {
     },
     data: {
       countries: [],
+      selectedCountry: null,
+      favouriteCountries: [],
+      seen: false,
     },
     computed: {
       totalPopulation: function() {
-        return this.countries.reduce((total, country) => {
-          return total += country.population
+        return this.countries.reduce((runningTotal, country) => {
+          return runningTotal + country.population
         }, 0)
       },
     },
@@ -20,21 +23,24 @@ document.addEventListener('DOMContentLoaded', () => {
       fetchCountries: function(){
         const request = fetch("https://restcountries.eu/rest/v2/all")
         .then(response => response.json())
-        .then(data => this.setCountries(data))
+        .then(countries => this.countries = countries)
       },
-      setCountries: function(data){
-        this.countries = data
-      },
-      viewMore: function(){
-        var checkBox = document.getElementById("view");
-        var text = document.getElementById("countryDetails");
-
-          if (checkBox.checked == true) {
-            text.style.display = "block";
-          } else {
-            text.style.display = "none";
-          }
-        }
+      addToFavourites: function(){
+        this.favouriteCountries.push(this.selectedCountry)
       }
+      // setCountries: function(data){
+      //   this.countries = data
+      // },
+      // viewMore: function(){
+      //   var checkBox = document.getElementById("view");
+      //   var text = document.getElementById("countryDetails");
+      //
+      //     if (checkBox.checked == true) {
+      //       text.style.display = "block";
+      //     } else {
+      //       text.style.display = "none";
+      //     }
+      //   }
+    }
   })
 })

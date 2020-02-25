@@ -10,22 +10,48 @@
   </head>
   <body>
 
+    <h1>Countries!</h1>
+
     <div id="app">
-      <h1>Countries!</h1>
-      <h2>Total population of all countries:</h2>
-      <h2>{{totalPopulation}}</h2>
-      <ul>
+
+      <h2>Total population of all countries globaly: {{totalPopulation}}</h2>
+
+      <label for="country_select">Select a Country</label>
+      <input type="text" id="search-country">
+      <select id="country_select" v-model="selectedCountry">
+        <option disabled value="">Select a Country</option>
+        <option v-for="country in countries" :value="country">{{country.name}}</option>
+      </select>
+
+      <div id="selected_country" v-if="selectedCountry">
+
+        <h2> {{selectedCountry.name}} </h2>
+        <h3>Capital City: {{selectedCountry.capital}} </h3>
+        <p>Timezones: {{selectedCountry.timezones}} </p>
+        <button v-if="!favouriteCountries.includes(selectedCountry)" @click="addToFavourites">Add To Favourites</button>
+        <button v-on:click="seen = !seen">More details</button>
+
+        <div v-if="seen" id="hide">
+          <p>Population: {{selectedCountry.population}} </p>
+          <p>Region: {{selectedCountry.region}} - {{selectedCountry.subregion}} </p>
+          <p>Telephone Code: {{selectedCountry.callingCodes}} </p>
+          <p>Top Level Domain: {{selectedCountry.topLevelDomain}} </p>
+          <img class="lrg-flag" :src="selectedCountry.flag" />
+        </div>
+
+      </div>
+      <!-- <ul>
         <li v-for="(country, index) in countries">
           <div class="">
           <p>{{country.name}}</p>
             <input type="checkbox" id="view" @click="viewMore(index)">View more</input>
-              <div id="countryDetails" style="display:none">
-                <p>{{country.population}}</p>
-                <img :src="country.flag">
-              </div>
-              </div>
+            <div id="countryDetails" style="display:none">
+              <p>{{country.population}}</p>
+              <img :src="country.flag">
+            </div>
+          </div>
         </li>
-      </ul>
+      </ul> -->
     </div>
 
   </body>
