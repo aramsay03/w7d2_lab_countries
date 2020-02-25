@@ -3,8 +3,30 @@
   <head>
     <meta charset="utf-8">
     <title></title>
+    <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/bundle.js" type="text/javascript">
+
+    </script>
   </head>
   <body>
+
+    <div id="app">
+      <h1>Countries!</h1>
+      <h2>Total population of all countries:</h2>
+      <h2>{{totalPopulation}}</h2>
+      <ul>
+        <li v-for="(country, index) in countries">
+          <div class="">
+          <p>{{country.name}}</p>
+            <input type="checkbox" id="view" @click="viewMore(index)">View more</input>
+              <div id="countryDetails" style="display:none">
+                <p>{{country.population}}</p>
+                <img :src="country.flag">
+              </div>
+              </div>
+        </li>
+      </ul>
+    </div>
 
   </body>
 </html>
